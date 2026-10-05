@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Attendance</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f5f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .box {
+      max-width: 450px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #1565c0;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    input, select {
+      border: 1px solid #ccc;
+    }
+
+    button {
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .checkin {
+      background: #2e7d32;
+    }
+
+    .break {
+      background: #f57c00;
+    }
+
+    .checkout {
+      background: #c62828;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+
+    <h1>Employee Attendance</h1>
+
+    <p>Welcome 👋</p>
+
+    <input type="text" id="employee" placeholder="Enter employee name">
+
+    <select id="shop">
+      <option value="">Select Shop</option>
+      <option>Shop 1</option>
+      <option>Shop 2</option>
+      <option>Shop 3</option>
+      <option>Shop 4</option>
+      <option>Shop 5</option>
+      <option>Shop 6</option>
+      <option>Shop 7</option>
+      <option>Shop 8</option>
+      <option>Shop 9</option>
+    </select>
+
+    <button class="checkin" onclick="checkIn()">
+      ✅ CHECK IN
+    </button>
+
+    <button class="break" onclick="startBreak()">
+      🍽️ / 🙏 / 🚻 TAKE BREAK
+    </button>
+
+    <button class="checkout" onclick="checkOut()">
+      🔴 CHECK OUT
+    </button>
+
+    <div id="message">
+      Please enter your name and select your shop.
+    </div>
+
+  </div>
+
+  <script>
+    function checkIn() {
+      let name = document.getElementById("employee").value;
+      let shop = document.getElementById("shop").value;
+
+      if (name === "" || shop === "") {
+        alert("Please enter your name and select your shop.");
+        return;
+      }
+
+      let time = new Date().toLocaleTimeString();
+
+      document.getElementById("message").innerHTML =
+        "🟢 " + name + " checked in at " + shop +
+        "<br>Time: " + time;
+    }
+
+    function startBreak() {
+      let name = document.getElementById("employee").value;
+
+      if (name === "") {
+        alert("Please enter your name first.");
+        return;
+      }
+
+      let type = prompt(
+        "What type of break?\n\n" +
+        "Type E = Eating\n" +
+        "Type P = Prayer\n" +
+        "Type W = Washroom"
+      );
+
+      if (type === null) return;
+
+      let time = new Date().toLocaleTimeString();
+
+      document.getElementById("message").innerHTML =
+        "🟠 " + name + " started a break." +
+        "<br>Time: " + time;
+    }
+
+    function checkOut() {
+      let name = document.getElementById("employee").value;
+
+      if (name === "") {
+        alert("Please enter your name first.");
+        return;
+      }
+
+      let time = new Date().toLocaleTimeString();
+
+      document.getElementById("message").innerHTML =
+        "🔴 " + name + " checked out." +
+        "<br>Time: " + time;
+    }
+  </script>
+
+</body>
+</html>
